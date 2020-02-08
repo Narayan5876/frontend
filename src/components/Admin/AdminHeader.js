@@ -1,62 +1,82 @@
-import React from 'react'
-import axios from 'axios';
-import AdminHeader from './AdminHeader'
-import '../../css/Adminbody.css'
+import React from'react'
+import {NavLink,Route,Switch,Redirect} from 'react-router-dom'
+import '../../css/AdminHeader.css'
+import AdminDashboard from './AdminDashboard'
+import AddHotel from './AddHotel'
+import AddRoom from'./AddRoom'
+import ManageUser from './ManageUser'
+import ManageHotel from './ManageHotel'
+import ManageRoom from './ManageRoom'
+import ManageReservation from './ManageReservation'
+import ManageQuery from './ManageQuery'
+import UpdateUser from './UpdateUser'
+import Logout from './Logout'
 
 
+class Sidenav extends React.Component{
+    state = {
 
-// import { View, Image } from 'react-native';
-class AdminDashBoard extends React.Component{
-    
-        state = {
-                fullname: '',
-                email: '',
-                address: '',
-                number: '',
+        headersdata22: {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+        },
+        user_id:"/AdminDashboard/"+localStorage.getItem('user_id'),
+        user_id1:"/AddHotel/"+localStorage.getItem('user_id'),
+        user_id2:"/AddRoom/"+localStorage.getItem('user_id'),
+        user_id3:"/ManageUser/"+localStorage.getItem('user_id'),
+        user_id7:"/ManageQuery/"+localStorage.getItem('user_id'),
+        user_id4:"/ManageRoom/"+localStorage.getItem('user_id'),
+        user_id5:"/ManageHotel/"+localStorage.getItem('user_id'),
+        user_id6:"/ManageReservation/"+localStorage.getItem('user_id'),
+        user_id8:"/UpdateUser/"+localStorage.getItem('user_id'),
+       
+
+        
+
+    }
+    render(){
+        if (this.state.headersdata22.headers.Authorization === "Bearer null") {
+            alert('Login! First')
+            return <Redirect to='/Login' />
+        }
+        return(
+            <div class="navbar">
+            <ul>
+                <li>  <NavLink to={ `${this.state.user_id}` }>AdminDashboard</NavLink></li>
+                <li><NavLink to= { `${this.state.user_id1}` } >Add Hotel</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id2}` }>Add Room</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id3}` }>ManageUser</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id4}` }>ManageRoom</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id5}` }>Manage Hotel</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id6}` } >Manage Reservation</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id7}` }>Manage Query</NavLink></li>
+                <li><NavLink to={ `${this.state.user_id8}` }>Update User</NavLink></li>
+                <li><NavLink to="/logout" >Logout</NavLink></li>
                
                
-                user_data: []
-            }
-            componentDidMount() {
-        
-                axios.get("http://localhost:4000/users/single/" + this.props.match.params.id).then(
-                    res => {
-                        console.log(res.data)
-                        this.setState({
-                            fullname: res.data.fullname,
-                            email: res.data.email,
-                            address: res.data.address,
-                            number: res.data.number,
-                           
-                           
-                           
-                           
-                           
-        
-                        })
-        
-                    })
-            }
-            render() {
- return(
- <div>
-         <AdminHeader/>
-         <center>
-                <form class ="form-bodys">
-                <center> <h1>welcome to Admin DashBoard</h1> </center>
+            
+
+
+            </ul>
+
+            <Switch>
+                <Route path="/AdminDashBoard" exact component={AdminDashboard} />
+                <Route path="/AddHotel" exact component={AddHotel} />
+                <Route path="/AddRoom" exact component={AddRoom} />
+                <Route path="/ManageUser" exact component={ManageUser} />
+                <Route path="/ManageRoom" exact component={ManageRoom} />
+                <Route path="/ManageHotel" exact component={ManageHotel} />
+                <Route path="/ManageReservation" exact component={ManageReservation} />
+                <Route path="/ManageQuery" exact component={ManageQuery} />
+                <Route path="/UpdateUser" exact component={UpdateUser} />
+                <Route path="/logout" exact component={Logout} />
              
- 
- <p>Full Name:{this.state.fullname}</p>
- <p>Email: {this.state.email}</p>
- <p>Address:{this.state.address}</p>
 
- <p>Contact Number: {this.state.number}</p>
+            </Switch>
 
- </form>
- </center>
 
- </div>
- )
- }
+        </div>
+        )
+    }
+
 }
-export default AdminDashBoard
+export default Sidenav
