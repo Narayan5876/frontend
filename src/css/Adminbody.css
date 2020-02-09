@@ -1,0 +1,45 @@
+.mainbody{
+    background: #ccc;
+}
+
+.container-body{
+    margin-top: 10px;
+    margin-left: 150px;
+
+}
+
+.form-body{
+  margin-left: 200px;
+  margin-top: 10px;
+  
+  margin-right: 300px;
+    border: 2px solid blueviolet;
+}
+
+input[type=text], input[type=password],input[type = email],textarea,select{
+    width: 75%;
+    padding: 12px;
+    margin: 8px 0;
+    background-color: burlywood;
+    
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  .abc {
+    background-color:green;
+    color: rgba(255, 255, 255, 0.568);
+    padding: 14px 20px;
+   margin-top: 10px;
+   margin-left: 0%;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+  }
+  .form-bodys{
+    margin-left: 200px;
+    margin-top: 10px;
+    height: 350px;
+    margin-right: 300px;
+      border: 2px solid blueviolet;
+  }
